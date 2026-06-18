@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>zamenaagregata</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+	  body {
+    max-width: none !important;
+    padding: 20px 5vw !important;
+    font-size: calc(16px + 0.2vw);
+  }
+  @media (min-width: 1200px) {
+    body {
+      max-width: 1100px !important;
+      margin: 0 auto !important;
+    }
+  }
+  </style>
+</head>
+<body>
+<h1 id="правила-ремонта-и-замены-агрегата-в-сборе">Правила ремонта и
+замены агрегата в сборе</h1>
+<p>Согласно основным правилам, ремонт по гарантии должен быть оптимально
+экономичным. То есть если дешевле узел разобрать, заменить деталь
+внутри, и собрать, чем заменить узел в сборе, так и нужно поступить.
+<br>Яркий пример, частая жалоба “течь печки”, в 99% случаев течет кран
+управления, его стоимость несопоставимо меньше чем стоимость отопителя в
+сборе, а работы по замене абсолютно одинаковы по нормативу. <br><b>Но
+это не всегда работает с основными агрегатами машины.</b></p>
+<h2
+id="для-детального-разъяснения-компания-dongfeng-выпустила-документ-который-точно-объясняет-в-каких-случаях-крупный-узел-ремонтируется-а-в-каких-меняется-целиком.">Для
+детального разъяснения, компания Dongfeng выпустила документ, который
+точно объясняет в каких случаях крупный узел ремонтируется, а в каких
+меняется целиком.</h2>
+<p><br>Major Assembly Replacement and Repair Standards <br>Management
+Rules <br>Стандарты замены и ремонта основных агрегатов</p>
+<p><br>1. Purpose – <b>Цель</b> <br/> <br>These management rules are
+specially formulated to define the standards for major assembly
+replacement and repair and to provide service stations with clear
+guidelines for such replacements and repairs.</p>
+<p><br><b>Эти правила специально разработаны для того, чтобы определить
+стандарты замены и ремонта крупных узлов и агрегатов и предоставить
+станциям технического обслуживания четкие рекомендации по такой замене и
+ремонту.</b></p>
+<p><br>2. Scope of application - <b>Сфера применения</b></p>
+<p><br>These management rules apply to the major assembly replacement
+and repair operations conducted by DFMIEC CV Marketing Department, CV
+Overseas Service Stations (hereinafter referred to as the Service
+Station) and related suppliers.</p>
+<p><br><b>Эти правила управления применяются к основным узлам и
+агрегатам, их замене и ремонту, проводимыми Станциями технического
+обслуживания.</b></p>
+<p><br>3. Terms and definitions - <b>Термины и определения</b></p>
+<p><br>Five major assemblies: engine, transmission, axle, cab, and
+retarder. <br><b>Пять основных узлов: двигатель, коробка передач,
+ведущая ось, кабина и замедлитель.</b></p>
+<p><br>Other major assemblies: repair items with a total repair material
+cost of more than CNY 5,000 (excluding five major assemblies).
+<br><b>Прочие основные узлы: общая стоимость материалов для ремонта
+которых превышает 5000 юаней (за исключением пяти основных узлов
+указанных выше).</b></p>
+<p><br>4. Principles - <b>Принципы</b></p>
+<p><br>Assemblies that can be repaired should not be replaced. If repair
+is not feasible, priority should be given to replacing the next higher
+assembly. Only when replacing the next higher assembly cannot resolve
+the issue should the major assembly be replaced.</p>
+<p><br><b>Узлы, которые могут быть отремонтированы, заменять не следует.
+Если ремонт невозможен, приоритет следует отдать замене следующего более
+крупного узла, в который входит неисправный. Только в том случае, если
+замена следующего более крупного узла не может решить проблему, следует
+заменить основной узел.</b></p>
+<p><br>Standards for replacement and repair of five major assemblies
+<br><b>Стандарты замены и ремонта пяти основных узлов</b></p>
+<p><br>Assembly Category Replacement standard Repair method <br><b>Когда
+ремонтировать, а когда заменять узел в сборе</b></p>
+<p><br><b>ДВИГАТЕЛЬ</b> <br>1. Two or more of the cylinder block,
+cylinder head, and crankshaft are damaged within 30,000 km or 3 months
+(whichever comes first) for on-road vehicles or within 10,000 km or 2
+months (whichever comes first) for replace the engine off-road vehicles.
+<br>2. The total repair cost exceeds 60% of the assembly’s value. | If
+any of the above conditions are met, replace the engine assembly or base
+assembly.</p>
+<p><br><b>Если выполняется какое-либо из вышеперечисленных условий,
+замените двигатель в сборе.</b></p>
+<p><br><b>1. При выходе из строя двух или более цилиндров, головки блока
+цилиндров, и коленчатого вала в течение 30 000 км или 3 месяцев (в
+зависимости от того, что наступит раньше) для дорожных транспортных
+средств или в течение 10 000 км или 2 месяцев (в зависимости от того,
+что наступит раньше) для внедорожных транспортных средств.</p>
+<p>Либо</p>
+<p><br>2. Полная стоимость ремонта превышает 60% от стоимости узла в
+сборе.</b></p>
+<p><br><b>КОРОБКА ПЕРЕДАЧ</b> <br>1. The input shaft, output shaft, and
+intermediate shaft of the transmission are all damaged or one or more of
+them along with the housing is (are) damaged within 30,000 km or 3
+months (whichever comes first) for on- road vehicles or within 10,000 km
+or 2 months (whichever comes first) for off-road vehicles. Replace the
+assembly transmission assembly <br>2. The total repair cost exceeds 60%
+of the assembly’s value. <br>If any of the above conditions are met,
+replace the gearbox assembly or base assembly.</p>
+<p><br><b>Если выполняется какое-либо из вышеперечисленных условий,
+замените коробку передач в сборе:</b></p>
+<p><br><b>1. Входной вал, выходной вал и промежуточный вал коробки
+передач повреждены, или один или несколько из них повреждены вместе с
+корпусом в течение 30 000 км или 3 месяцев (в зависимости от того, что
+наступит раньше) для дорожных транспортных средств или в течение 10 000
+км или 2 месяцев (в зависимости от того, что наступит раньше) для
+внедорожных транспортных средств.</p>
+<p><br>Либо</p>
+<p><br>2. Общая стоимость ремонта превышает 60% от стоимости КПП в
+сборе.</b></p>
+<p><br><b>КАБИНА</b> <br>1.The three or more structural parts of the cab
+body (e.g. floor, roof panel, side walls, front wall, rear wall and
+non-detachable parts) are cracked simultaneously within 6 months for
+on-road vehicles or within 3 months for off-road vehicles. Replace the
+cab body. <br><b>1. Кабина заменяется в сборе если: три или более
+конструктивных элемента кузова кабины (например, пол, панель крыши,
+боковые стенки, передняя стенка, задняя стенка и неразъемные детали)
+разрушаются одновременно в течение 6 месяцев для дорожных транспортных
+средств или в течение 3 месяцев для внедорожников.</b></p>
+<p><br><b>ВЕДУЩИЙ МОСТ</b> <br>1. The axle housing and main reducer are
+both damaged within 30,000 km or 3 months for on-road vehicles or within
+10,000 km or 2 months for off-road vehicles. <br>2. The total repair
+cost exceeds 60% of the assembly’s value. <br>If any of the above
+conditions are met, replace the gearbox assembly or base assembly.
+<b>Если выполняется какое-либо из вышеперечисленных условий, замените
+коробку передач в сборе.</b></p>
+<p><br><b>1. Если корпус моста и главный редуктор повреждаются в течение
+30 000 км или 3 месяцев для дорожных транспортных средств или в течение
+10 000 км или 2 месяцев для внедорожных транспортных средств.</p>
+<p><br>Либо</p>
+<p><br>2. Общая стоимость ремонта превышает 60% от стоимости моста в
+сборе.</b></p>
+<p><br><b>ТОРМОЗ ЗАМЕДЛИТЕЛЬ - РЕТАРДЕР</b> <br>1. The retarder housing
+cracks (without external force applied). <br>2. There is oil leakage or
+seepage at the working chamber replace the retarder joint surface of the
+retarder (excluding the joint surfaces between the heat exchanger and
+the retarder housing, and between the retarder and the transmission).
+<br>If any of the above conditions are met, replace the gearbox assembly
+or base assembly. <b>Если выполняется какое-либо из вышеперечисленных
+условий, замените ретардер в сборе.</p>
+<p><br>1. Если корпус замедлителя лопнул (без приложения внешнего
+усилия).</p>
+<p><br>Либо</p>
+<p><br>2. В рабочей камере произошла утечка или просачивание масла (за
+исключением уплотнений между теплообменником и корпусом замедлителя, а
+также между замедлителем и коробкой передач). </b></p>
+<p><br>6. Application and approval process <br><b>Процесс подачи заявки
+и утверждения</b></p>
+<p><br>Application conditions: If the material cost for a single repair
+exceeds CNY 5,000, the service station must submit a Major Assembly
+Application Form through the DMS. <br><b>1. Условия применения: Если
+стоимость материалов для единовременного ремонта превышает 5000 юаней,
+станция технического обслуживания должна подать заявку на капитальный
+ремонт через DMS. В меню - Pre-application form registration</b></p>
+<p><br>Approval hierarchy: <br><b>Процесс одобрения:</b></p>
+<p><br>CNY 5,000 &lt; single repair material cost &lt;CNY 50,000: The
+service station submits the Major Assembly Application Form — Final
+review by Service Manager. <br><b>При стоимости ремонта от 5 000 юаней
+(стоимость материалов для единовременного ремонта) до 50 000 юаней:
+Станция технического обслуживания подает заявку на капитальный ремонт —
+окончательное рассмотрение менеджером сервисной службы.</b></p>
+<p><br>CNY 50,000 &lt; Single repair material cost: The service station
+submits the Major <br>Assembly Application Form — Review by Service
+Manager (within 2 hours) — Final review by After-Sales Service Director.
+<br><b>При стоимости ремонта более 50 000 юаней (Стоимость материалов
+для единовременного ремонта): Станция технического обслуживания подает
+заявку на капитальный ремонт - сначала заявка рассматривается менеджером
+сервисной службы — окончательно рассматривается директором по
+послепродажному обслуживанию.</b></p>
+<p><br>7. Other requirements <br><b>Другие требования</b></p>
+<p><br>Special cases shall be handled on a case-by-case basis.
+<br><b>Особые случаи должны рассматриваться в индивидуальном
+порядке.</b></p>
+<p><br>8. These rules shall come into effect from September 1, 2025.
+<br><b>Настоящие правила вступают в силу с 1 сентября 2025 года.</b></p>
+<p><span style="color: red;"> <a href="static/zamena.pdf">Ссылка на
+оригинальный документ</a> </span></p>
+</body>
+</html>

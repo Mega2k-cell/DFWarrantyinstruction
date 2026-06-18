@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>newwarranty</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+	body {
+    max-width: none !important;
+    padding: 20px 5vw !important;
+    font-size: calc(16px + 0.2vw);
+  }
+  @media (min-width: 1200px) {
+    body {
+      max-width: 1100px !important;
+      margin: 0 auto !important;
+    }
+  }
+  /* Стиль для миниатюры */
+        .clickable-img {
+            width: 300px;          /* нужный размер миниатюры */
+            cursor: pointer;
+            transition: 0.2s;
+            border-radius: 8px;
+        }
+        .clickable-img:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
+        }
+
+        /* Модальное окно (увеличенная картинка) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            text-align: center;
+            cursor: pointer;
+        }
+        .modal img {
+            max-width: 100%;
+            max-height: 150%;
+            margin-top: 5%;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: sans-serif;
+        }
+  </style>
+</head>
+<h1 id="создание-гарантийной-рекламации-на-автомобиль">Создание
+гарантийной рекламации на автомобиль</h1>
+<p>Вход в портал DMS осуществляется по ссылке -
+https://dms.dongfeng-global.com Язык на выбор, китайский, английский,
+русский, французский, и испанский. Рекомендуем использовать английский
+язык, в нем более адекватный перевод.</p>
+<p><img src="static/enterdms.jpg" /></p>
+<body>
+      <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img id="modalImg">
+    </div>
+<p>Для сознания новой гарантийной рекламации на автомобиль, необходимо
+войти в пункт меню,<b> After-Sales Service - Management of vehicle
+warranty claim - Registration of vehicle warranty claim</b> 
+<img class="thumbnail" src="static/oformlenie/mvwc1.jpg" alt="Фото"></p>
+<ol type="1">
+<li>В открывшемся окне мы видим все рекламации в работе. После принятия
+рекламации производителем они пропадают из этого списка. 
+<img class="thumbnail" src="static/oformlenie/mvwc2.jpg" alt="Фото"></li>
+</ol>
+<p>В верхней части окна есть поля отбора для рекламаций находящихся в
+работе. Можно найти рекламацию по одному или нескольким параметрам.</p>
+<p>У рекламаций есть статус, он показывает на каком этапе находится
+рассмотрение. <br>Статусы: <br><b>Created</b> - Создана и сохранена
+<br><b>Pending review</b> - Отправлена на рассмотрение <br><b>Under
+Review</b> - Проверена и одобрена дистрибьютором <br><b>Returned</b> -
+Возвращено на доработку</p>
+<ol start="2" type="1">
+<li><p>Для создания новой рекламации необходимо нажать кнопку <b>New
+addition</b> <img class="thumbnail" src="static/oformlenie/mvwc3.jpg" alt="Фото"></p></li>
+<li><p>В открывшемся окне необходимо ввести номер шасси автомобиля,
+найти его кнопкой <b>Query</b>, и выбрать кнопкой <b>Select</b> для
+продолжения оформления.</p></li>
+</ol>
+<p><b>Так же тут можно увидеть дату начала гарантии, и дополнительно
+убедиться что ремонт соответствует гарантийной политике. </b></p>
+<p><img class="thumbnail" src="static/oformlenie/mvwc4.jpg" alt="Фото"></p>
+<ol start="4" type="1">
+<li>В открывшемся окне мы видим саму рекламацию, и начинаем ее
+заполнение. Если что то пропустили, система не даст сохранить и укажет
+что не заполнено.</li>
+</ol>
+<p><img class="thumbnail" src="static/oformlenie/mvwc5.jpg" alt="Фото"></p>
+<p>Начинаем с <b>Warranty Type:</b> <br><b>PDI</b> - ремонт на
+автомобиле ДО продажи, если дефект обнаружен при приеме машины или при
+проведении предпродажной подготовки. <br><b>After sales warranty</b> -
+ремонт на машине в эксплуатации, по жалобе клиента.</p>
+<p>Далее <b>Task assignment number</b> - Это номер заказ наряда, он
+должен быть уникален, по этому рекомендую вносить номер заказ наряда из
+1С.</p>
+<p>Следующее <b>Fault date</b> - Это дата проведения ремонта, правильно
+конечно дата поломки, но здесь выбираем именно дату завершения
+ремонта.</p>
+<p>Далее <b>Mileage(KM)</b> - Пробег автомобиля на момент выполнения
+ремонта. Пробег берите исключительно с фото приборной панели которое
+будете прикладывать. <br>!Ошибка в пробеге является критической!</p>
+<p><b>Reason part supplier code и Reason part serial number</b> - Код
+производителя и серийный номер. <br><a
+href="kodproizvoditela.html">Ссылка на документ Код производителя
+детали</a></p>
+<p>Теперь очень важное и немного сложное, <b>DTC</b> - Это код дефекта
+детали. То есть нужно выбрать из представленных кодов неисправности,
+максимально точно отражающий поломку.</p>
+<p><img class="thumbnail" src="static/oformlenie/mvwc6.jpg" alt="Фото"></p>
+<p>Если вы уже знаете код неисправности, вы можете ввести его в поле
+DTC.</p>
+<p>А если нет, то придется искать его по <b>Fault description</b> -
+Описанию неисправности. И в помощь <b>Fault mode</b> - сам дефект.</p>
+<p>Все заполняется на английском языке. Для облегчения поиска необходимо
+знать как называется дефектная деталь на английском языке.</p>
+<p>На приведенном примере отмечен код при неисправности - “Течь помпы”
+(утечка охлаждающей жидкости из водяного насоса).</p>
+<p><b>!Если вы пользуетесь браузером Google Chrome, вы можете выделить
+текст, нажать правую кнопку мыши, и нажать “Перевести выделенный текст
+на русский”, что позволит проверить точность выбранного вами кода уже на
+русском языке!</b> <img class="thumbnail" src="static/oformlenie/mvwc7.jpg" alt="Фото"></p>
+<p><b>!Старайтесь выбрать как можно более близкий к поломке код, но не
+всегда это полностью возможно!</p>
+<p>Если у нас поломка воздушного компрессора, когда разрушается
+пастинчатый клапан, тут вариантов кода может быть несколько: <br>Это
+может быть Breakage of air compressor assembly - Поломка компрессорного
+узла <br>Или Abnormal function of air compressor assembly -
+Неисправность в работе компрессорного узла <br>Или поискать еще более
+точный, но в общем, любой из этих кодов отражает поломку.</b></p>
+<p>Переходим ниже, тут нам необходимо заполнить: <br><b>Customer
+description</b> - Жалоба клиента. <br>Не нужно “переводить” слова
+водителя, пишите как заявлено. “Бухтит движок”, “Бренчит глушак”, “Шипит
+снизу”, и так далее. <br><b>Cause analysis</b> - Это уже полное
+профессиональное описание дефекта. <br>Чем полнее и объективнее вы
+опишете причину поломки, тем быстрее будет принятие рекламации.
+<br><b>Service measures</b> - Выполненные действия для восстановления
+автомобиля. <br>Описывайте действия полностью! Уважайте проверяющих
+коллег, пришите не просто - “Замена”, а “Замена воздушного компрессора.
+Проверка пневмоситемы” <br>И в <b>Remark</b> вы можете дополнительно
+внести разъяснения, либо что то сообщить о поломке. 
+<img class="thumbnail" src="static/oformlenie/mvwc8.jpg" alt="Фото"></p>
+<h2 id="добавление-запасных-частей">Добавление запасных частей</h2>
+<p>На данный момент существует 2 способа внесения запасных частей для
+ремонта: <br>1. По номеру бар-кода с упаковки запасной части. Правильный
+способ. <br>2. По парт номеру запасной части.</p>
+<h3 id="бар-код">Бар-код</h3>
+<p>Бар-код это уникальный номер на упаковке с запасной частью. В нем
+заложены все данные о поступлении запасной части в оборот, по этому для
+производителя, он самый верный. Так как производитель сразу видит кто
+ввозил запсную часть, когда, по какой стоимости, и т.д.</p>
+<p>Бар-код - это наклейка на фото ниже. Она такая одна на упаковке, и
+больше этот номер нигде не дублируется. <img class="thumbnail" src="static/oformlenie/barcode.jpg" alt="Фото"></p>
+<p>Чтобы добавить деталь в рекламацию, нужно ввести этот номер в поле
+<b>Spare parts barcode number</b> и нажать кнопку <b>Validation</b>.
+<br>Кнопка <b>Validation</b> будет активна только если вы ввели все 12
+символов. <img class="thumbnail" src="static/oformlenie/mvwc9.jpg" alt="Фото"></p>
+<p>Если код введен верно, и такая позиция еще не использована, появится
+окошко. <img class="thumbnail" src="static/oformlenie/mvwc10.jpg" alt="Фото"></p>
+<p>Тут нужно сверить что деталь совпадает с использованой вами, по парт
+номеру. И обязательно проставить количество в <b>Usage quantity</b>,
+доступное количество деталей в этом бар-коде указано в <b>Remaining
+available quantity</b>. <br>Далее нажимаем кнопку <b>Save</b>, тем самым
+добавляя деталь в рекламацию.</p>
+<h3 id="парт-номер">Парт номер</h3>
+<p>Для деталей у которых нет бар-кода допускается их внесение по номеру
+запасной части. Для такого добавления, в левой части экрана, необходимо
+из списка выбрать вариант поставки этой детали, и далее нажать кнопку
+<b>New addition</b>. <img class="thumbnail" src="static/oformlenie/mvwc11.jpg" alt="Фото"></p>
+<p>В списке есть 4 варианта поставки детали: <br><b>OEM free part</b> -
+Это деталь бесплатно предосталенная производителем узла или агрегата,
+например Cummins, или Eaton. Соответственно выбирая данный пункт вы
+соглашаетесь с тем, что компенсации за деталь не будет.<br />
+<b>DFMIEC free part</b> - Это тоже бесплатная деталь, но предосталенная
+заводом Dongfeng, или дистрибьютором. Так же не подлежит компенсации.
+<br><b>Local market part</b> - Это оригинальная деталь которую мы купили
+на локальном рынке. Этот пункт используется в 99% случаев, но требуется
+к рекламации прикрепить документ о покупке. <br><b>Dismanting part</b> -
+Как следует из названия, это деталь демонтированная(снятая) с другого
+автомобиля, обычно нового. Этот пункт используется ТОЛЬКО по
+предварительному согласованию с дистрибьютором.</p>
+<p>В открывшемся окне вводим номер запасной части в поле <b>Spare part
+code</b>, нажимаем кнопку <b>Query</b>, тем самым выполняя поиск детали.
+Проверяем что это нужная нам деталь, видим ее “заводскую” стоимость, и
+подтверждаем выбор кнопкой <b>Select</b>. 
+<img class="thumbnail" src="static/oformlenie/mvwc12.jpg" alt="Фото"></p>
+<p>Этими способами вносим в рекламацию все оставшиеся оригинальные
+детали использованные в ремонте.</p>
+<h2 id="добавление-работ">Добавление работ</h2>
+<p>Стандартно абсолютно все работы по гарантии для тягачей (GX и KX)
+включают в себя и поиск неисправности и замену детали, начинаются эти
+работы с <b>Fault diagnosis and replacement of…</b> <br>А у самосвалов
+(КС) работы делятся на диагностику, работы которые начинаются с
+<b>Diagnosis of…</b>, и работы по замене детали - <b>Replacement
+of…</b>.</p>
+<p>В рекламацию можно внести только 2 работы по одному ремонту (для
+самосвалов).</p>
+<p>Для добавления работ переходим во вкладку <b>Labor-hour list</b>, и
+нажимаем добавить <b>New additional</b>. 
+<img class="thumbnail" src="static/oformlenie/mvwc13.jpg" alt="Фото"></p>
+<p>В открывшемся окне, так же как и с добавлением кода дефекта (DTC),
+есть поиск по коду работы, или по ее названию.</p>
+<h3
+id="внимание-правильно-подобранный-код-дефекта-прямо-сопоставляется-с-кодом-работы-по-первым-цифрам-в-коде.">Внимание!
+Правильно подобранный код дефекта, прямо сопоставляется с кодом работы,
+по первым цифрам в коде.</h3>
+<p>На картинке ниже пример, если вы указываете код дефекта -
+<b>B35090</b>1016 Cracking of air compressor assembly (Поломка
+воздушного компрессора в сборе), то правильная работа по его замене
+будет <b>35090</b>102 Fault diagnosis and replacement of air compressor
+assembly (Поиск неисправности и замена воздушного компрессора в сборе).
+<img class="thumbnail" src="static/oformlenie/mvwc14.jpg" alt="Фото"></p>
+<h3
+id="портал-может-выдать-вам-несколько-похожих-кодов-работ-с-разным-нормативом-в-таком-случае-нужно-обращать-внимание-на-комментарий-в-конце-работы-они-различаются-по-агрегату-например-по-двигателю-или-кпп.">Портал
+может выдать вам несколько похожих кодов работ с разным нормативом, в
+таком случае нужно обращать внимание на комментарий в конце работы, они
+различаются по агрегату, например по двигателю или КПП.</h3>
+<p>Если у вас двигатель как указано - DDi13 engine, то правильная первая
+работа 35090102. Если же другой, ISZ13 или Z14, то работа будет 35090101.
+<br><img class="thumbnail" src="static/oformlenie/mvwc15.jpg" alt="Фото"></p>
+<h2 id="добавление-прочих-затрат">Добавление прочих затрат</h2>
+<p>В случае, если для ремонта грузовика использовались неоригинальные
+детали, технические жидкости или масла, работы выполненные подрядными
+организациями (эвакуация, услуги мастерских по ремонту узлов, и т.д.), а
+так же нестандартные ремонтные работы (например, ремонт
+электропроводки), то такие затраты вносятся во вкладку <b>Other
+costs</b>.</p>
+<p>Для добавления в рекламацию этих работ, материалов или затрат, нужно
+нажать кнопку <b>New additional</b>. <br>Появится строчка в которой
+сначала нужно выбрать что это за прочие затраты: <br><b>Other</b> -
+Самое часто используемое, не уточняющиеся прочие затраты. Сюда
+добавляются работы, масла, подрядные затраты, неоригинальные детали.
+<br><b>TR Reward Program</b> - Поощрительная программа. На данный момент
+этот пункт не используется. <br><b>VOR air freight</b> - Компенсация VOR
+авиа доставки запасной части. <br><b> Local purchase price
+differential</b> - Доплата разницы в цене при покупке оригинальной
+детали на локальном рынке. Когда стоимость покупки детали не
+перекрывается компенсацией.</p>
+<p><img class="thumbnail" src="static/oformlenie/mvwc16.jpg" alt="Фото"></p>
+<h3 id="в-затраты-можно-добавить-только-по-одному-из-пунктов">В затраты
+можно добавить только по одному из пунктов!</h3>
+<p>То есть если у вас 5 затрат, 4 из раздела Other(масло и
+неоригинальные детали), и разница в стоимости оригинальной детали, вы
+создаете только две строчки. <br>Одну Other, и одну Local purchase price
+differential. И уже в Other вносите суммируя масло и детали.</p>
+<p>Пример заполнения:</p>
+<p><img class="thumbnail" src="static/oformlenie/mvwc17.jpg" alt="Фото"></p>
+<p>Все в Other нужно добавить поочередно, желательно на английском
+языке, с указанием количества и стоимости. Цены в юанях (обозначаются в
+CNY или RMB, и то, и то Юань). <br>Далее сложить указанные стоимости, и
+внести в ячейку <b>Amount</b>.</p>
+<h2 id="добавление-фотографий-и-иных-данных-по-ремонту">Добавление
+фотографий и иных данных по ремонту</h2>
+<p>Последнее что нужно сделать для завершения оформления рекламации это
+добавить фото, видео, и иные материалы которые докажут верное
+выполенение этого ремонта.</p>
+<p>Для этого нужно перейти на вкладку <b>Appendix information</b>. Тут
+все интуитивно понятно, нажатием на иконку с плюсом добавляем фото
+соответствующее подписи над иконкой. <br><b>photo at 45° to the
+vehicle</b> - Вид машины под угом 45° <br><b>photo of the vehicle
+nameplate</b> - Табличка VIN номера <br>И так далее.</p>
+<p><img class="thumbnail" src="static/oformlenie/mvwc18.jpg" alt="Фото"></p>
+<p>Файлы не являющиеся фотографиями(видео, файлы образа двигателя,
+документы), можно приложить по кнопке <b>Select files other than
+image</b>, в самом низу вкладки.</p>
+<h3
+id="оформление-рекламации-завершено-осталось-нажать-кнопку-submit-в-правом-верхнем-углу-окна-для-отправление-на-рассмотрение.">Оформление
+рекламации завершено, осталось нажать кнопку Submit, в правом верхнем
+углу окна, для отправление на рассмотрение.</h3>
+<script>
+        // Получаем элементы
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        const closeBtn = document.querySelector('.close');
+
+        // Для каждой картинки вешаем обработчик клика
+	thumbnails.forEach(img => {
+    img.addEventListener('click', () => {
+        modal.style.display = 'block';
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+    });
+});
+
+        // Закрыть по крестику или по клику на фон
+        closeBtn.addEventListener('click', () => modal.style.display = 'none');
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
