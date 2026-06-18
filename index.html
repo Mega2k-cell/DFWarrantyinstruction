@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Мой справочник</title>
+		    <style>
+        body { margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        .container { display: flex; height: 100vh; }
+        nav { width: 260px; background: #f8f9fa; padding: 20px; overflow-y: auto; border-right: 1px solid #dee2e6; }
+        nav h3 { margin-top: 0; }
+        nav ul { list-style: none; padding: 0; }
+        nav li { margin: 12px 0; }
+        nav a { text-decoration: none; color: #0d6efd; cursor: pointer; }
+        nav a:hover { text-decoration: underline; }
+        iframe { flex: 1; border: none; width: 100%; height: 100vh; }
+        @media (max-width: 700px) {
+            .container { flex-direction: column; }
+            nav { width: auto; height: auto; border-right: none; border-bottom: 1px solid #dee2e6; }
+            iframe { height: 70vh; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <h3>📖 Содержание</h3>
+        <ul>
+            <!-- ВРУЧНУЮ добавьте ссылки на ваши HTML-файлы -->
+            <li><a onclick="document.getElementById('frame').src='intro.html'">Что такое гарантия</a></li>
+			<li><a onclick="document.getElementById('frame').src='silovaya.html'">Силовая линия</a></li>
+            <li><a onclick="document.getElementById('frame').src='notwarranty.html'">Что не входит в гарантию</a></li>
+			<li><a onclick="document.getElementById('frame').src='fotos.html'">Фото и видео для гарантии</a></li>
+			<li><a onclick="document.getElementById('frame').src='diagnosis.html'">Диагностика для гарантии</a></li>
+			<li><a onclick="document.getElementById('frame').src='tablichki.html'">Таблички агрегатов</a></li>
+			<li><a onclick="document.getElementById('frame').src='kodproizvoditela.html'">Код производителя детали</a></li>
+			<li><a onclick="document.getElementById('frame').src='zamenaagregata.html'">Правила ремонта или замены агрегата</a></li>
+			<h4>Работа в системе DMS</h4>
+            <li><a onclick="document.getElementById('frame').src='kaksmotret.html'">Смотрим гарантию на авто в DMS</a></li>
+			<li><a onclick="document.getElementById('frame').src='nagarantiu.html'">Постановка авто на гарантию в DMS</a></li>
+			<li><a onclick="document.getElementById('frame').src='newwarranty.html'">Создание гарантийной рекламации в DMS</a></li>
+			<li><a onclick="document.getElementById('frame').src='preapp.html'">Преавторизация дорогих ремонтов в DMS</a></li>
+            <!-- Добавьте остальные страницы по такому же образцу -->
+        </ul>
+    </nav>
+    <iframe id="frame" src="intro.html"></iframe>
+</div>
+<script>
+    // Автоматически открываем первую страницу, если iframe пуст
+    if (window.location.hash) {
+        var page = window.location.hash.substring(1);
+        document.getElementById('frame').src = page;
+    }
+</script>
+</body>
+</html>
